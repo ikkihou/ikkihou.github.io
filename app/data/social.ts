@@ -33,7 +33,7 @@ export const socialLinks = [
   {
     id: 6,
     name: "Instagram",
-    usl: "https://www.instagram.com/ikkihou_______/",
+    url: "https://www.instagram.com/ikkihou_______/",
     icon: BiLogoInstagram,
     status: "social",
   },
