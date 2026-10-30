@@ -19,12 +19,12 @@ export default defineType({
             type: "image",
             description: "Upload a profile photo. Recommended size 320 x 320",
             fields: [
-                {
+                defineField({
                     name: "alt",
                     title: "Alt",
                     type: "string",
                     description: "Describe this photo.",
-                },
+                }),
             ],
             options: {
                 hotspot: true,
