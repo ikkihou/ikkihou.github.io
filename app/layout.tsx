@@ -15,7 +15,7 @@ const inter = Inter({
 });
 
 const options = {
-    title: "ikkihou | Programmer",
+    title: "ikkihou | Main Page",
     description:
         "ikkihou is a Programmer and Technical Writer who is passionate about building solutions and contributing to open source communities",
     url: "https://ikkihou.vercel.app",
@@ -57,7 +57,7 @@ export default function RootLayout({
                 <Providers>
                     <Navbar />
                     {children}
-                    <Footer />
+                    {/* <Footer /> */}
                 </Providers>
             </body>
             <Script
