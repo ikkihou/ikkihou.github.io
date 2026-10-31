@@ -16,6 +16,7 @@ export default function NotFoundComponent({ title, description }: props) {
           height={80}
           src={duckImage}
           alt="Yellow duck searching"
+          unoptimized
         />
         <h1 className="font-incognito font-black tracking-tight sm:text-6xl text-3xl lg:leading-[3.7rem] leading-tight mt-6 mb-3">
           {title}
