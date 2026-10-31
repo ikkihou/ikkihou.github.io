@@ -9,11 +9,11 @@ import EmptyState from "../shared/EmptyState";
 
 export default function ContributionGraph() {
   const [calendarYear, setCalendarYear] = useState<number | undefined>(
-    undefined
+    undefined,
   );
   const { theme, systemTheme } = useTheme();
   const [serverTheme, setServerTheme] = useState<"light" | "dark" | undefined>(
-    undefined
+    undefined,
   );
   const scheme =
     theme === "light" ? "light" : theme === "dark" ? "dark" : systemTheme;

@@ -68,7 +68,7 @@ export default async function Posts() {
                   </div>
                 </Link>
               </article>
-            )
+            ),
           )}
         </div>
       ) : (

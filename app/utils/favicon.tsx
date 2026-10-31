@@ -8,7 +8,7 @@ type faviconType = {
 export default function Favicon({ domain }: faviconType) {
   function extractDomain(url: string) {
     const match = url.match(
-      /^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:/.\n]+\.[a-z]{2,})(?:\/|$)/i
+      /^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:/.\n]+\.[a-z]{2,})(?:\/|$)/i,
     );
     if (match) {
       const fullDomain = match[1];

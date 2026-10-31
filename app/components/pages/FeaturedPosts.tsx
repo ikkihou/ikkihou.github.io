@@ -45,7 +45,7 @@ export default async function FeaturedPosts({ params }: { params?: string }) {
               </div>
             </Link>
           </article>
-        )
+        ),
       )}
     </>
   );
