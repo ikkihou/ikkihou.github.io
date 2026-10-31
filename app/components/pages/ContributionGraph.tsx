@@ -1,28 +1,24 @@
 "use client";
 import { useTheme } from "next-themes";
-import GitHubCalendar from "react-github-calendar";
+import { GitHubCalendar } from "react-github-calendar";
 import { espionage, github } from "@/app/data/contribution-graph-theme";
-import { useState, useEffect } from "react";
+import { useState, useSyncExternalStore } from "react";
 import YearButton from "../shared/YearButton";
 import { getGitHubYears } from "@/app/utils/calculate-years";
 import EmptyState from "../shared/EmptyState";
+
+// A never-triggered subscriber: `useSyncExternalStore` only needs it to exist.
+const subscribe = () => () => {};
 
 export default function ContributionGraph() {
   const [calendarYear, setCalendarYear] = useState<number | undefined>(
     undefined,
   );
   const { theme, systemTheme } = useTheme();
-  const [serverTheme, setServerTheme] = useState<"light" | "dark" | undefined>(
-    undefined,
-  );
+  // Mounted check without an effect (no hydration mismatch, no cascading render)
+  const hasMounted = useSyncExternalStore(subscribe, () => true, () => false);
   const scheme =
     theme === "light" ? "light" : theme === "dark" ? "dark" : systemTheme;
-
-  // Set theme only after rendering to avoid mismatch between client and server
-  // https://github.com/vercel/next.js/issues/10608#issuecomment-589073831
-  useEffect(() => {
-    setServerTheme(scheme);
-  }, [scheme]);
 
   const today = new Date().getFullYear();
   const username = process.env.NEXT_PUBLIC_GITHUB_USERNAME;
@@ -37,13 +33,23 @@ export default function ContributionGraph() {
       />
     );
 
+  // Wait for mount so the resolved color scheme matches the client theme
+  if (!hasMounted)
+    return (
+      <div className="dark:bg-primary-bg bg-secondary-bg border dark:border-zinc-800 border-zinc-200 p-8 rounded-lg max-w-fit max-h-fit">
+        <span className="block text-zinc-500 dark:text-zinc-400 text-sm animate-pulse">
+          Loading contribution graph…
+        </span>
+      </div>
+    );
+
   return (
     <div className="flex xl:flex-row flex-col gap-4">
       <div className="dark:bg-primary-bg bg-secondary-bg border dark:border-zinc-800 border-zinc-200 p-8 rounded-lg max-w-fit max-h-fit">
         <GitHubCalendar
           username={username}
           theme={github}
-          colorScheme={serverTheme}
+          colorScheme={scheme === "dark" ? "dark" : "light"}
           blockSize={13}
           year={calendarYear}
         />

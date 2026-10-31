@@ -1,4 +1,4 @@
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Link from "next/link";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -20,16 +20,16 @@ import { readTime } from "@/app/utils/readTime";
 import PageHeading from "@/app/components/shared/PageHeading";
 
 type Props = {
-  params: {
+  params: Promise<{
     post: string;
-  };
+  }>;
 };
 
 const fallbackImage: string = "/site.png";
 
 // Dynamic metadata for SEO
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const slug = params.post;
+  const slug = (await params).post;
   const post: PostType = await sanityFetch({
     query: singlePostQuery,
     tags: ["Post"],
@@ -78,7 +78,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function Post({ params }: Props) {
-  const slug = params.post;
+  const slug = (await params).post;
   const post: PostType = await sanityFetch({
     query: singlePostQuery,
     tags: ["Post"],
@@ -136,7 +136,7 @@ export default async function Post({ params }: Props) {
             <div className="relative w-full h-40 pt-[52.5%]">
               <Image
                 className="rounded-xl border dark:border-zinc-800 border-zinc-100 object-cover"
-                layout="fill"
+                fill
                 src={post.coverImage?.image || fallbackImage}
                 alt={post.coverImage?.alt || post.title}
                 quality={100}
@@ -162,8 +162,8 @@ export default async function Post({ params }: Props) {
                       .width(80)
                       .height(80)
                       .url()}
-                    alt={post.author.photo.alt}
-                    layout="fill"
+                    alt={post.author.photo.alt ?? post.author.name}
+                    fill
                     className="dark:bg-zinc-800 bg-zinc-300 rounded-full object-cover"
                   />
                 </div>
@@ -209,7 +209,7 @@ export default async function Post({ params }: Props) {
               <h3 className="text-xl font-semibold tracking-tight mb-4">
                 Featured
               </h3>
-              <FeaturedPosts params={params.post} />
+              <FeaturedPosts params={slug} />
             </section>
           </aside>
         </Slide>

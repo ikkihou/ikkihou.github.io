@@ -60,10 +60,10 @@ export default async function About() {
                     <Image
                       className="rounded-2xl mb-4 object-cover max-h-96 min-h-96 bg-top"
                       src={data.profileImage.image}
+                      alt={data.profileImage.alt ?? data.fullName ?? ""}
                       width={400}
                       height={400}
                       quality={100}
-                      alt={data.profileImage.alt}
                       placeholder="blur"
                       blurDataURL={data.profileImage.lqip}
                       priority

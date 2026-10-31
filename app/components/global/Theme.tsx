@@ -1,18 +1,21 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useSyncExternalStore } from "react";
 import { useTheme } from "next-themes";
 import SunIcon from "../../assets/icons/SunIcon";
 import MoonIcon from "../../assets/icons/MoonIcon";
 
+// A never-triggered subscriber: `useSyncExternalStore` only needs it to exist.
+const subscribe = () => () => {};
+
 export default function Theme() {
   const { systemTheme, theme, setTheme } = useTheme();
-  const [hasMounted, setHasMounted] = useState(false);
+  // Mounted check without an effect (no hydration mismatch, no cascading render)
+  const hasMounted = useSyncExternalStore(subscribe, () => true, () => false);
   const currentTheme = theme === "system" ? systemTheme : theme;
 
   function toggleTheme() {
     return currentTheme === "light" ? setTheme("dark") : setTheme("light");
   }
-  useEffect(() => setHasMounted(true), []);
 
   if (!hasMounted)
     return (
