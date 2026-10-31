@@ -19,14 +19,23 @@ const options = {
   description:
     "ikkihou is a Programmer and Technical Writer who is passionate about building solutions and contributing to open source communities",
   url: "https://ikkihou.vercel.app",
-  ogImage:
-    "https://res.cloudinary.com/victoreke/image/upload/v1692635746/victoreke/og.png",
+  ogImage: "/site.png",
 };
 
 export const metadata: Metadata = {
   title: options.title,
   metadataBase: new URL(options.url),
   description: options.description,
+  icons: {
+    icon: [{ url: "/favicon-ikkihou.svg?v=2", type: "image/svg+xml" }],
+    apple: [
+      {
+        url: "/apple-icon-ikkihou.png?v=2",
+        sizes: "180x180",
+        type: "image/png",
+      },
+    ],
+  },
   openGraph: {
     title: options.title,
     url: options.url,
@@ -57,7 +66,7 @@ export default function RootLayout({
         <Providers>
           <Navbar />
           {children}
-          {/* <Footer /> */}
+          <Footer />
         </Providers>
       </body>
       <Script

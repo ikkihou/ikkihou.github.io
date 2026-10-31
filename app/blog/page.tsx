@@ -13,8 +13,7 @@ export const metadata: Metadata = {
     title: "Blog | ikkihou",
     url: "https://ikkihou.vercel.app/blog",
     description: "Read latest stories from ikkihou's Blog",
-    images:
-      "https://res.cloudinary.com/victoreke/image/upload/v1692636087/victoreke/blog.png",
+    images: "/site.png",
   },
 };
 

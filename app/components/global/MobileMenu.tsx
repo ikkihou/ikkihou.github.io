@@ -10,7 +10,6 @@ import {
   HiOutlineX,
   HiUser,
 } from "react-icons/hi";
-import Logo from "../../../public/PB v1.png";
 
 export default function MobileMenu() {
   const [navShow, setNavShow] = useState(false);
@@ -64,7 +63,12 @@ export default function MobileMenu() {
       >
         <div className="flex items-center justify-between mt-6 px-8">
           <Link href="/" onClick={onToggleNav}>
-            <Image src={Logo} width={35} height={35} alt="logo" />
+            <span className="inline-flex items-center gap-2.5" aria-label="ikkihou home">
+              <Image src="/ikkihou-mark.svg" width={36} height={36} alt="" priority />
+              <span className="font-incognito text-xl font-semibold tracking-tight dark:text-white text-zinc-900">
+                ikkihou<span className="text-primary-color">.</span>
+              </span>
+            </span>
           </Link>
 
           <button

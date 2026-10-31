@@ -11,13 +11,12 @@ import PageHeading from "../components/shared/PageHeading";
 export const metadata: Metadata = {
   title: "Project | ikkihou",
   metadataBase: new URL("https://ikkihou.vercel.app/projects"),
-  description: "Explore projects built by Victor Eke",
+  description: "Explore projects built by ikkihou",
   openGraph: {
     title: "Projects | ikkihou",
     url: "https://ikkihou.vercel.app/projects",
-    description: "Explore projects built by Victor Eke",
-    images:
-      "https://res.cloudinary.com/victoreke/image/upload/v1692636087/victoreke/projects.png",
+    description: "Explore projects built by ikkihou",
+    images: "/project.png",
   },
 };
 

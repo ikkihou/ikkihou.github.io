@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import Logo from "@/public/PB v1.png";
 import Theme from "./Theme";
 import UnmountStudio from "./Unmount";
 import MobileMenu from "./MobileMenu";
@@ -30,7 +29,12 @@ export default function Navbar() {
       <header className="text-sm py-6 md:px-16 px-6 border-b dark:border-zinc-800 border-zinc-200 z-30 md:mb-28 mb-10">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <Link href="/">
-            <Image src={Logo} width={35} height={35} alt="logo" />
+            <span className="inline-flex items-center gap-2.5" aria-label="ikkihou home">
+              <Image src="/ikkihou-mark.svg" width={36} height={36} alt="" priority />
+              <span className="font-incognito text-xl font-semibold tracking-tight dark:text-white text-zinc-900">
+                ikkihou<span className="text-primary-color">.</span>
+              </span>
+            </span>
           </Link>
 
           <nav className="md:block hidden">
